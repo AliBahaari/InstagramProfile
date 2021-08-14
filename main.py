@@ -11,6 +11,7 @@ class InstagramProfilePicture:
 
 
   def show_profile_picture(self):
+    print('Warning: Don\'t Behind Any Proxy Or VPN.')
 
     # Request to Instagram
     request_result = req.get(f'https://www.instagram.com/{self.username}/')

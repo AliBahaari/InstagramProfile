@@ -1,6 +1,5 @@
 import requests as req, re, requests_random_user_agent
 from bs4 import BeautifulSoup
-from io import BytesIO
 from PIL import Image
 
 
@@ -22,10 +21,10 @@ class InstagramProfilePicture:
     profile_picture_url = re.findall(r"profile_pic_url_hd\":\"([\S]+?)\"", str(body_tags[0]))[0].replace(r'\u0026', '&')
 
     # Show the Image
-    profile_picture_bytes = req.get(profile_picture_url).content
-    profile_picture = Image.open(BytesIO(profile_picture_bytes))
+    profile_picture_bytes = req.get(profile_picture_url, stream=True).raw
+    profile_picture = Image.open(profile_picture_bytes)
     profile_picture.show()
 
 
-IGPP = InstagramProfilePicture('<USERNAME>')
+IGPP = InstagramProfilePicture('USERNAME')
 IGPP.show_profile_picture()

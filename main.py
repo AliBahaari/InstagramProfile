@@ -3,17 +3,17 @@ from bs4 import BeautifulSoup
 from PIL import Image
 
 
-print('Warning: Neither Proxy Nor VPN!')
+print('Warning: Don\'t Use Neither Proxy Nor VPN')
 
 
-class InstagramProfilePicture:
+class InstagramProfile:
 
 
   def __init__(self, username):
       self.username = username
 
 
-  def show_profile_picture(self):
+  def profile_picture(self):
     # Request to Instagram
     request_result = req.get(f'https://www.instagram.com/{self.username}/')
 
@@ -28,9 +28,12 @@ class InstagramProfilePicture:
     profile_picture_bytes = req.get(profile_picture_url, stream=True).raw
     profile_picture = Image.open(profile_picture_bytes)
     profile_picture.show()
+    profile_picture.save(f'images/{self.username}.png')
+
+    print('Profile Picture Saved')
 
 
-  def show_profile_biography(self):
+  def profile_biography(self):
     # Request to Instagram
     request_result = req.get(f'https://www.instagram.com/{self.username}/')
 
@@ -40,8 +43,20 @@ class InstagramProfilePicture:
 
     # Show the Biography
     profile_biography = re.findall(r"biography\":\"(.*?)\"", str(body_tags[0]))[0]
-    print(profile_biography)
+  
+    if len(profile_biography) > 0:
+
+      with open(f'biographies/{self.username}.txt', 'w', encoding='utf-8') as biography_file:
+        encoded_biography = profile_biography.encode('utf-8').decode('unicode-escape').encode('utf-8', 'replace').decode('utf-8')
+        biography_file.write(encoded_biography)
+        
+        print(encoded_biography)
+        print('Profile Biography Saved')
+
+    else:
+      print('No Biography')
 
 
-IGPP = InstagramProfilePicture('leomessi')
-IGPP.show_profile_biography()
+instagramProfile = InstagramProfile('saba_mts')
+instagramProfile.profile_picture()
+instagramProfile.profile_biography()

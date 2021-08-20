@@ -7,7 +7,7 @@ This is ***InstagramProfile*** package.
 Install the package with `pip` as below:
 
 ```bash
-  pip install InstagramProfile-AliBahaari
+pip install InstagramProfile-AliBahaari
 ```
 
 

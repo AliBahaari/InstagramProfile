@@ -57,6 +57,6 @@ class InstagramProfile:
       print('No Biography')
 
 
-instagramProfile = InstagramProfile('saba_mts')
+instagramProfile = InstagramProfile('<USERNAME>')
 instagramProfile.profile_picture()
 instagramProfile.profile_biography()

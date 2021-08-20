@@ -7,7 +7,7 @@ This is ***InstagramProfile*** package.
 Install the package with `pip` as below:
 
 ```bash
-pip install InstagramProfile-AliBahaari
+  pip install InstagramProfile-AliBahaari
 ```
 
 
@@ -15,8 +15,6 @@ pip install InstagramProfile-AliBahaari
 ## Usage/Examples
 
 ```python
-from InstagramProfile import InstagramProfile
-
 instagramProfile = InstagramProfile('<USERNAME>')
 instagramProfile.profile_picture()
 instagramProfile.profile_biography()

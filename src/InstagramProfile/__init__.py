@@ -1,0 +1,1 @@
+from .InstagramProfile import InstagramProfile

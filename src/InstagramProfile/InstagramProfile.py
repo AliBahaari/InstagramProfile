@@ -22,13 +22,12 @@ class InstagramProfile:
     body_tags = soup.find_all('body')
 
     profile_picture_url = re.findall(r"profile_pic_url_hd\":\"([\S]+?)\"", str(body_tags[0]))[0].replace(r'\u0026', '&')
-    profile_biography = re.findall(r"biography\":\"(.*?)\"", str(body_tags[0]))[0]
 
     # Show the Image
     profile_picture_bytes = req.get(profile_picture_url, stream=True).raw
     profile_picture = Image.open(profile_picture_bytes)
     profile_picture.show()
-    profile_picture.save(f'images/{self.username}.png')
+    profile_picture.save(f'{self.username}.png')
 
     print('Profile Picture Saved')
 
@@ -41,12 +40,12 @@ class InstagramProfile:
     soup = BeautifulSoup(request_result.text, 'html.parser')
     body_tags = soup.find_all('body')
 
-    # Show the Biography
     profile_biography = re.findall(r"biography\":\"(.*?)\"", str(body_tags[0]))[0]
   
+    # Show the Biography
     if len(profile_biography) > 0:
 
-      with open(f'biographies/{self.username}.txt', 'w', encoding='utf-8') as biography_file:
+      with open(f'{self.username}.txt', 'w', encoding='utf-8') as biography_file:
         encoded_biography = profile_biography.encode('utf-8').decode('unicode-escape').encode('utf-8', 'replace').decode('utf-8')
         biography_file.write(encoded_biography)
         
@@ -55,8 +54,3 @@ class InstagramProfile:
 
     else:
       print('No Biography')
-
-
-instagramProfile = InstagramProfile('<USERNAME>')
-instagramProfile.profile_picture()
-instagramProfile.profile_biography()

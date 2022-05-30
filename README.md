@@ -1,3 +1,6 @@
+# The package is under maintenance!
+
+
 # InstagramProfile Package
 
 This is ***InstagramProfile*** package.
@@ -9,7 +12,7 @@ This is ***InstagramProfile*** package.
 Install the package with `pip` as below:
 
 ```bash
-pip install InstagramProfile-AliBahaari
+pip install InstagramProfile
 ```
 
 
